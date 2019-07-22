@@ -1,7 +1,5 @@
 package com.hacker.focus.entity;
 
-import java.util.Date;
-
 /**
  * todo记录
  */
