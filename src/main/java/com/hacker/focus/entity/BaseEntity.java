@@ -8,6 +8,6 @@ import java.util.Date;
 @Data
 public class BaseEntity implements Serializable {
   private String id;
-  private Date create;
+  private Date createTime;
   private Date lastModify;
 }
