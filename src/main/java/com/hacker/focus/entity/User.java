@@ -10,6 +10,11 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class User extends BaseEntity {
+
+  public User() {
+    super();
+  }
+
   private String name;
   private String password;
 }

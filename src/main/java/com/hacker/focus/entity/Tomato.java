@@ -12,9 +12,14 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class Tomato extends BaseEntity{
+
+  public Tomato() {
+    super();
+  }
+
   private Date start;
   private Date end;
   private String userId;
   private int timeLength;
-  private TomatoStatue statue;
+  private String statue;
 }

@@ -11,8 +11,13 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class Plan extends BaseEntity {
+
+  public Plan() {
+    super();
+  }
+
   private String subject;
   private String userId;
   private Date finish;
-  private PlanStatu statue;
+  private String statue;
 }
