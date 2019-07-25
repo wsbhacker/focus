@@ -13,6 +13,11 @@ public class UserDao extends BaseDao implements IUser {
   }
 
   @Override
+  public User getByName(String name) {
+    return get(User.class, GETBYNAME, name);
+  }
+
+  @Override
   public boolean add(User user) {
     int affected = insert(INSERTSQL, user.getId(), user.getName(), user.getPassword(), user.getCreateTime(), user.getLastModify());
     return affected == 1;

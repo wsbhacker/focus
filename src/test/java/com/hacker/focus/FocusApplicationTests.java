@@ -62,5 +62,12 @@ public class FocusApplicationTests {
     System.out.println(planDao.add(plan));
   }
 
+  @Test
+  public void testQueryUser() {
+    User user = new User();
+    user = userDao.get("343a1cbe-7bb2-46cc-95c2-125a33b6a9fd");
+    System.out.println(user.toString());
+  }
+
 
 }

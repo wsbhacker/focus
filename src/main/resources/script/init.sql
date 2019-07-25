@@ -1,10 +1,10 @@
 create table IF NOT EXISTS user
 (
-    id         char(64) unique not null,
-    name       varchar(255) unique,
-    password   varchar(256)    not null,
-    createTime timestamp       not null,
-    lastModify timestamp       not null,
+    id         char(64) unique     not null,
+    name       varchar(255) unique not null,
+    password   varchar(256)        not null,
+    createTime timestamp           not null,
+    lastModify timestamp           not null,
     PRIMARY KEY (id)
 ) engine = InnoDB;
 
