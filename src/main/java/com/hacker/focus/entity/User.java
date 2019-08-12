@@ -1,6 +1,7 @@
 package com.hacker.focus.entity;
 
 
+import java.math.BigDecimal;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -24,4 +25,6 @@ public class User extends BaseEntity {
 
   private String name;
   private String password;
+  private BigDecimal score;
+  private BigDecimal level;
 }

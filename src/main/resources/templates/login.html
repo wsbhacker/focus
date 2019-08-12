@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>loginTest</title>
+    <title>登录</title>
 </head>
 <body>
-<form>
-    <label>用户名:&nbsp</label><input type="text"><br>
-    <label>密&nbsp&nbsp&nbsp码:&nbsp</label><input type="text"><br>
-    <button id="signIn" type="button">登录</button>
-    <button id="signUp" type="button">注册</button>
+<form id="signIn" th:action="@{/doLogin}" method="post">
+    <label>用户名:&nbsp</label><input type="text" name="username"/><br>
+    <label>密&nbsp&nbsp&nbsp码:&nbsp</label><input type="password" name="password"/><br>
+    <button id="signInButton" type="submit">登录</button>
+    <!--    <button id="signUpButton" type="button">注册</button>-->
 </form>
 </body>
 </html>
