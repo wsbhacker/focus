@@ -16,18 +16,30 @@ public class LoginController {
   @Autowired
   private ILoginService loginService;
 
-  @GetMapping(value = {"/"})
-  public String login() {
-    return "login";
+  @GetMapping(value = {"/", "/login"})
+  public String login(HttpSession session) {
+    User user = (User) session.getAttribute("user");
+    if (user != null) {
+      User user1 = loginService.signIn(user);
+      return "menu";
+    } else {
+      return "login";
+    }
   }
 
-  @PostMapping(value = "/login")
+  @PostMapping(value = {"/menu"})
   public String doLogin(@RequestParam("username") String name,
       @RequestParam("password") String passWord, HttpSession session) {
     // TODO: 2019/7/26
     Assert.hasLength(name, "user name can not be empty.");
     User user = new User(name, passWord);
     user = loginService.signIn(user);
+    session.setAttribute("user", user);
     return "menu";
+  }
+
+  @GetMapping(value = {"/test"})
+  public String test() {
+    return "test";
   }
 }

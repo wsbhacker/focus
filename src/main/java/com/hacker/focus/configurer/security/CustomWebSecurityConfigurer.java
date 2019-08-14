@@ -17,10 +17,16 @@ public class CustomWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    http.formLogin().loginPage("/login").and()
-            .authorizeRequests().antMatchers("/").permitAll()
-        .anyRequest().authenticated().and().rememberMe().tokenValiditySeconds(60 * 60 * 3).and()
-        .csrf().disable();
+
+    http.authorizeRequests()
+        .anyRequest().hasRole("admin").anyRequest().authenticated() //任何请求,登录后可以访问
+        // 配置登录URI、登录失败跳转URI与登录成功后默认跳转URI
+        .and().formLogin().loginPage("/login").loginProcessingUrl("/signIn")
+        .successForwardUrl("/menu").failureUrl("/login")
+        // 注销行为任意访问
+        .and().logout().permitAll().logoutSuccessUrl("/login")
+        // 设置拒绝访问的提示URI
+        .and().exceptionHandling().accessDeniedPage("/login").and().csrf().disable();
   }
 
   @Override
@@ -30,7 +36,7 @@ public class CustomWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
   @Override
   public void configure(WebSecurity web) throws Exception {
-    super.configure(web);
+    web.ignoring().antMatchers("/", "/login");
   }
 
   @Bean
