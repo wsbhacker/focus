@@ -3,5 +3,8 @@ package com.hacker.focus.manager.login;
 import com.hacker.focus.entity.User;
 
 public interface ILoginManager {
-  User signInByNameAndKey(User user);
+
+  User queryByNameAndKey(User user) throws Exception;
+
+  User addUser(User user) throws Exception;
 }

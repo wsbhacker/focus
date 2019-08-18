@@ -25,4 +25,9 @@ public class BaseDao {
     return update(sql, args);
   }
 
+  protected int queryCount(String sql, Object... args) {
+    Integer integer = jdbcTemplate.queryForObject(sql, Integer.class, args);
+    return integer;
+  }
+
 }

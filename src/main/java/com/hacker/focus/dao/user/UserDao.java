@@ -18,8 +18,16 @@ public class UserDao extends BaseDao implements IUser {
   }
 
   @Override
+  public User getByEmailOrName(User user) {
+    User databaseUser = get(User.class, GETBYNAMEOREMAIL, user.getName(), user.getEmail());
+    return databaseUser;
+  }
+
+  @Override
   public boolean add(User user) {
-    int affected = insert(INSERTSQL, user.getId(), user.getName(), user.getPassword(), user.getCreateTime(), user.getLastModify());
+    int affected = insert(INSERTSQL, user.getId(), user.getName(), user.getEmail(),
+        user.getPassword(),
+        user.getCreateTime(), user.getLastModify());
     return affected == 1;
   }
 
@@ -31,7 +39,14 @@ public class UserDao extends BaseDao implements IUser {
 
   @Override
   public boolean update(User user) {
-    int update = update(UPDATESQL, user.getName(), user.getPassword(), user.getLastModify(), user.getId());
+    int update = update(UPDATESQL, user.getName(), user.getPassword(), user.getLastModify(),
+        user.getId());
     return update == 1;
+  }
+
+  @Override
+  public boolean exist(User user) {
+    int i = queryCount(COUNTBYNAMEOREMAIL, user.getName(), user.getEmail());
+    return i != 0;
   }
 }

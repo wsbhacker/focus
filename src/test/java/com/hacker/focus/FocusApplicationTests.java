@@ -2,37 +2,40 @@ package com.hacker.focus;
 
 import com.hacker.focus.dao.plan.IPlan;
 import com.hacker.focus.dao.tomato.ITomato;
-import com.hacker.focus.dao.user.IUser;
-import com.hacker.focus.entity.*;
+import com.hacker.focus.entity.Plan;
+import com.hacker.focus.entity.PlanStatu;
+import com.hacker.focus.entity.Tomato;
+import com.hacker.focus.entity.TomatoStatue;
+import com.hacker.focus.entity.User;
+import com.hacker.focus.manager.login.ILoginManager;
+import java.util.Date;
+import java.util.UUID;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Date;
-import java.util.UUID;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class FocusApplicationTests {
 
   @Autowired
-  private IUser userDao;
+  private ILoginManager loginManager;
   @Autowired
   private IPlan planDao;
   @Autowired
   private ITomato tomatoDao;
 
   @Test
-  public void testUserInsert() {
+  public void testUserInsert() throws Exception {
     User user = new User();
-    user.setName("hacker" + System.currentTimeMillis());
-    user.setPassword("hacker" + System.currentTimeMillis());
-    user.setId(UUID.randomUUID().toString());
+    user.setEmail("w776a889n347g@163.com");
+    user.setName("hacker");
+    user.setPassword("hacker");
     user.setCreateTime(new Date());
     user.setLastModify(new Date());
-    System.out.println(userDao.add(user));
+    loginManager.addUser(user);
   }
 
   @Test
@@ -65,7 +68,6 @@ public class FocusApplicationTests {
   @Test
   public void testQueryUser() {
     User user = new User();
-    user = userDao.get("343a1cbe-7bb2-46cc-95c2-125a33b6a9fd");
     System.out.println(user.toString());
   }
 

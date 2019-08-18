@@ -12,7 +12,7 @@ public class LoginService implements ILoginService {
   private ILoginManager loginManager;
 
   @Override
-  public User signIn(User user) {
-    return loginManager.signInByNameAndKey(user);
+  public User signIn(User user) throws Exception {
+    return loginManager.queryByNameAndKey(user);
   }
 }

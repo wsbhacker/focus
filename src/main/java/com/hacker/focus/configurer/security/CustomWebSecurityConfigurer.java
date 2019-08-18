@@ -22,7 +22,7 @@ public class CustomWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
         .anyRequest().hasRole("admin").anyRequest().authenticated() //任何请求,登录后可以访问
         // 配置登录URI、登录失败跳转URI与登录成功后默认跳转URI
         .and().formLogin().loginPage("/login").loginProcessingUrl("/signIn")
-        .successForwardUrl("/menu").failureUrl("/login")
+        .defaultSuccessUrl("/menu").failureUrl("/login")
         // 注销行为任意访问
         .and().logout().permitAll().logoutSuccessUrl("/login")
         // 设置拒绝访问的提示URI
